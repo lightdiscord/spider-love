@@ -14,6 +14,11 @@ export default new Router({
       component: Home
     },
     {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('./Settings.vue')
+    },
+    {
       path: '/secret',
       name: 'secret',
       component: () => import('./Secret.vue')
