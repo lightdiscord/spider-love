@@ -1,12 +1,32 @@
 <template>
   <div>
-    <ProfileForm />
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title">Configure your profile</h2>
+          <p class="subtitle">Talk about yourself</p>
+        </div>
+      </div>
+    </section>
 
-    <fieldset>
-      <legend>Danger zone!</legend>
+    <div class="container">
+      <ProfileForm />
+    </div>
 
-      <ResetKeysForm />
-    </fieldset>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title">Danger zone</h2>
+          <p class="subtitle">We hope you know what you're doing</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <fieldset>
+        <ResetKeysForm />
+      </fieldset>
+    </div>
 </div>
 </template>
 

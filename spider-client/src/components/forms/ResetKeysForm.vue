@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Reset my keyring</h3>
+    <h3 class="title is-4">Reset my keyring</h3>
     <p>
       Doing this is not being able to access your account and recreate a new one.
       <strong>This action is irreversible.</strong>
@@ -21,7 +21,10 @@ export default Vue.extend({
   }),
   methods: {
     regenerate() {
-      // unimplemented
+      this.$store.dispatch('account/keyring/generate')
+        .then(() => console.log('regenerate done'));
+      // TODO: Delete
+      console.log('regenerate')
     }
   },
   components: {

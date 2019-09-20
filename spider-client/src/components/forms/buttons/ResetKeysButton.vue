@@ -1,7 +1,15 @@
 <template>
   <div>
-    <button v-if="filter" type="button" @click="reset">Nah, I changed my mind</button>
-    <button type="button" @click="click">{{ text }}</button>
+    <button
+      class="button is-outlined is-danger"
+      v-if="filter"
+      type="button"
+      @click="reset">Nah, I changed my mind</button>
+
+    <button
+      class="button is-outlined is-danger"
+      type="button"
+      @click="click">{{ text }}</button>
   </div>
 </template>
 
@@ -31,9 +39,10 @@ export default Vue.extend({
       this.filter = false;
     },
 
-    click() {
+    click({ target }) {
       this.step += 1;
 
+      target.blur();
       if (this.step == sentences.length) {
         this.reset();
         this.$emit('click');

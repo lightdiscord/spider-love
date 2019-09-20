@@ -1,43 +1,68 @@
 <template>
   <form @submit="submit">
     <fieldset>
-      <legend>Talk about yourself</legend>
-
-      <div>
-        <label for="name" class="block">What's your name ?</label>
-        <input type="text" name="name" id="name" class="block" required v-model="name">
+      <div class="field">
+        <label for="name" class="label">What's your name ?</label>
+        <div class="control">
+          <input type="text" name="name" id="name" class="input" required v-model="name">
+        </div>
       </div>
 
-      <div>
-        <label for="description" class="block">How do you describe yourself ?</label>
-        <textarea id="description" name="description" rows="6" cols="80" required v-model="description"></textarea>
+      <div class="field">
+        <label for="description" class="label">How do you describe yourself ?</label>
+        <div class="control">
+          <textarea
+            class="textarea"
+            id="description"
+            name="description"
+            rows="6"
+            cols="80"
+            required
+            v-model="description">
+          </textarea>
+        </div>
       </div>
 
-      <div>
-        <label for="birth" class="block">What's your birth date ?</label>
-        <input type="date" id="birth" name="birth" min="2018-03" value="2018-05" class="block" required v-model="birth">
+      <div class="field">
+        <label for="birth" class="label">What's your birth date ?</label>
+        <div class="control">
+          <input
+            type="date"
+            id="birth"
+            name="birth"
+            min="2018-03"
+            value="2018-05"
+            class="input"
+            required
+            v-model="birth">
+        </div>
       </div>
 
-      <fieldset>
-        <legend>What's your gender ?</legend>
+      <div class="field">
+        <label class="label">What's your gender ?</label>
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="gender" value="male" class="radio" v-model="gender">
+            Male
+          </label>
 
-        <div>
-          <input type="radio" id="male" name="gender" value="male" v-model="gender">
-          <label for="male">Male</label>
+          <label class="radio">
+            <input type="radio" name="gender" value="female" class="radio" v-model="gender">
+            Female
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="gender" value="other" class="radio" v-model="gender">
+            Other
+          </label>
         </div>
+      </div>
 
-        <div>
-          <input type="radio" id="female" name="gender" value="female" v-model="gender">
-          <label for="female">Female</label>
+      <div class="field">
+        <div class="control">
+          <button type="submit" class="button">Update my profile!</button>
         </div>
-
-        <div>
-          <input type="radio" id="other" name="gender" value="other" v-model="gender">
-          <label for="other">Other</label>
-        </div>
-      </fieldset>
-
-      <button type="submit">Update my profile!</button>
+      </div>
     </fieldset>
   </form>
 </template>

@@ -32,46 +32,8 @@ span.tag {
 
 <script lang="ts">
 import Vue from 'vue';
-import { createNamespacedHelpers } from 'vuex';
-
-const keyring = createNamespacedHelpers('account/keyring');
 
 export default Vue.extend({
-  data: () => ({
-    timeout: false,
-  }),
-
-  computed: {
-    ...keyring.mapState({
-      keyring: state => state.ready
-    }),
-
-    checks() {
-      return [
-        {
-          title: 'Account keyring generation',
-          state: this.keyring
-        },
-        {
-          title: 'zeaeza',
-          state: false
-        },
-        {
-          title: 'zeaezs',
-          state: true
-        }
-      ];
-    },
-
-    ready() {
-      return !this.checks.some(({ state }) => !state);
-    }
-  },
-
-  watch: {
-    ready(value) {
-      this.$emit('input', value);
-    }
-  }
+  props: ['checks']
 });
 </script>
