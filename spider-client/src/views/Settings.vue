@@ -23,23 +23,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style>
-fieldset {
-  margin-top: 1rem;
-}
-
-legend {
-  background-color: #000;
-  color: #fff;
-  padding: 3px 6px;
-}
-
-fieldset > *:nth-child(n+3) {
-  margin-top: 1rem;
-}
-
-.block {
-  display: block;
-}
-</style>

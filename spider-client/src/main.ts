@@ -3,6 +3,8 @@ import App from './components/App.vue'
 import router from './views/router'
 import store from './store'
 
+import 'bulma/bulma.sass';
+
 Vue.config.productionTip = false
 
 export const instance = new Vue({

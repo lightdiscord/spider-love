@@ -1,6 +1,39 @@
+import localforage from 'localforage';
+
+export const generationState = {
+  WORKING: Symbol(),
+  DONE: Symbol()
+};
+
 type State = {
+  ready: boolean,
   keypair: CryptoKeyPair,
 };
+
+const instance = localforage.createInstance({
+  name: 'accountKeyring'
+});
+
+// TODO: Correct types
+const storeKeys = ({ publicKey, privateKey }: any) => {
+    const storePublic = window.crypto.subtle.exportKey('jwk', publicKey)
+        .then((key) => instance.setItem('publickey', key));
+
+    const storePrivate = window.crypto.subtle.exportKey('jwk', privateKey)
+        .then((key) => instance.setItem('privatekey', key));
+
+    return Promise.all([storePublic, storePrivate]);
+}
+
+// TODO: Correct types
+export const createPlugin = () => {
+  return (store: any) => {
+    store.subscribe((mutation: any, state: State) => {
+      if (mutation.type == 'account/keyring/update')
+        return storeKeys(mutation.payload);
+    });
+  };
+}
 
 const generateKey = () => crypto.subtle.generateKey(
   {
@@ -16,18 +49,23 @@ const generateKey = () => crypto.subtle.generateKey(
 export default {
   namespaced: true,
   state: {
+    ready: false,
     privatekey: null
   },
   mutations: {
+    setReady(state: State, ready: boolean) {
+      state.ready = ready;
+    },
+
     update(state: State, keypair: CryptoKeyPair) {
       state.keypair = keypair;
     }
   },
   actions: {
-    // TODO: Correct type
     generate({ commit }: any) {
+      commit('setReady', false);
       return generateKey()
-        .then((keypair) => (commit('update', keypair), keypair));
+        .then((keypair) => (commit('update', keypair), commit('setReady', true), keypair));
     }
   }
 }
